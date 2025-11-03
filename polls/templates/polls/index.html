@@ -5,12 +5,16 @@
     </head>
     <body>
         <h1>Avaliable Poll Questions</h1>
-        <ul>
-            {% for question in latest_question_list %}
-                <li>{{ question.question_text}}</li>
-            {% empty %}
-                <li>No polls are available.</li>
+        {% if questions %}
+         <ul>
+            {% for question in questions %}
+            <li>
+               <a href="{% url 'detail' question.id %}">{{ question.question_text }}</a>
+            </li>
             {% endfor %}
         </ul>
+        {% else %}
+        <p>No questions available.</p>
+        {% endif %}
     </body>
 </html>
