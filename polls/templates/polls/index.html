@@ -1,9 +1,16 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
     <head> 
         <title>Poll App</title>
+        <link rel="stylesheet" href="{% static 'polls/style.css' %}">
     </head>
     <body>
+        {% if user.is_authenticated %}
+    <p>Welcome, {{ user.username }} | <a href="/accounts/logout/">Logout</a></p>
+    {% else %}
+        <p><a href="/accounts/login/">Login to Vote</a></p>
+    {% endif %}
         <h1>Avaliable Poll Questions</h1>
         {% if questions %}
          <ul>
